@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- build.xml do lab2 SI1-->
+
+<project name="lab2" default="compila" basedir=".">
+
+	<property name="src" value="${basedir}\src" />
+	<property name="build" value="${basedir}\build" />
+	<property name="bin" value="${basedir}\bin" />
+	<property name="test" value="${basedir}\src\sistema" />
+	<property name="war" value="${basedir}\dist" />
+	<property name="package" value="src" />
+	<property name="lib" value="${basedir}\lib" />
+
+	<path id="classpath">
+		<fileset dir="${lib}">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${lib}" />
+	</path>
+
+	<!-- LIMPA -->
+
+	<target name="limpa">
+		<echo message="Limpando informacoes antigas..." />
+		<delete dir="${build}" />
+		<delete dir="${bin}" />
+		<delete dir="${war}" />
+	</target>
+
+	<!-- COMPILA -->
+
+	<target name="compila" depends="limpa">
+		<copy todir="${build}">
+			      <fileset dir="${basedir}"/>
+		</copy>
+		<mkdir dir="${build}" />
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	
+	<!-- TESTAR -->
+
+	<target name="testa" depends="compila" description="Executa os testes">
+		<java classname="UsuarioTest.java">
+			<classpath>
+				<pathelement location="${test}" />
+				<path refid="classpath" />
+			</classpath>
+
+		</java>
+	</target>
+
+	<!-- WAR -->
+
+	<target name="war" depends="compila" description="Cria o WAR">
+		<mkdir dir="${war}" />
+		<jar jarfile="${war}\lab2-1.war" basedir="${build}" />
+	</target>
+
+</project>
