@@ -1,0 +1,150 @@
+package beans;
+
+import java.util.ArrayList;
+import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.Random;
+
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+<<<<<<< HEAD
+import excessoes.TextoException;
+
+=======
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+import sistema.Texto;
+import sistema.Usuario;
+
+@ManagedBean
+@SessionScoped
+public class TextosETipos {
+	
+
+	private List<Texto> textos;  
+
+<<<<<<< HEAD
+	private Texto textoSelecionado;
+	private Texto textoModificado;
+=======
+	private Texto textoSelecionado;  
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+
+	
+
+	public void TableBean() {  
+<<<<<<< HEAD
+		textos = new ArrayList<Texto>();
+		populateTextos(textos);
+=======
+		textos = new ArrayList<Texto>();  
+
+		populateTextos(textos);
+
+
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+	}  
+
+	public Texto getTextoSelecionado() {  
+		return textoSelecionado;  
+	}  
+
+	public void setTextoSelecionado(Texto texto) {  
+		this.textoSelecionado = texto;  
+	}  
+
+	private void populateTextos(List<Texto> lista) {  
+		lista.addAll(Usuario.getInstance().getTextos());  
+	}  
+
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+	private String valueNumber;
+
+	public String getValueNumber() {
+		return valueNumber;
+	}
+
+	public void setValueNumber(String valueNumber) {
+		this.valueNumber = valueNumber;
+	}
+	
+<<<<<<< HEAD
+	public String setRecombinacao() throws TextoException {
+=======
+	public String setRecombinacao() {
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+		if(valueNumber.equals("1")) Usuario.getInstance().tipoDeRecombinacao("aleatorio com repeticao");
+		else if(valueNumber.equals("2")) Usuario.getInstance().tipoDeRecombinacao("aleatorio sem repeticao");
+		else if(valueNumber.equals("3")) Usuario.getInstance().tipoDeRecombinacao("inversa");
+		else {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Erro", "Voce Deve Selecionar Um Tipo"));
+			return "faces/textosETipo.xhtml";
+		}
+		if(textoSelecionado==null) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Erro", "Voce Deve Selecionar Um Texto"));
+			return "faces/textosETipo.xhtml";
+		}
+<<<<<<< HEAD
+		this.textoModificado = new Texto(textoSelecionado.getConteudo());
+=======
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+		return "faces/recombinar.xhtml";
+	}
+
+	public List<Texto> textos(){
+		return inverteTextos();
+	}
+
+	private List<Texto> inverteTextos(){
+		List<Texto> retorno = new ArrayList<Texto>();
+		List<Texto> temp = Usuario.getInstance().getTextos();
+		for (int i = temp.size()-1; i >=0; i--) {
+			retorno.add(temp.get(i));
+		}
+		return retorno;
+	}
+	
+	public String dozePrimeirasPalavras(Texto texto) {
+		String [] temp = texto.getConteudo().split(" ");
+		String retorno = "";
+		for (int i = 0; i < temp.length; i++) {
+			if(i>11) break;
+			retorno = retorno + temp[i] + " ";
+		}
+		return retorno;
+	}
+	
+	
+
+	public void adicionarNovaLinha() {
+<<<<<<< HEAD
+		setTextoModificado(Usuario.getInstance().recombinaTexto(textoModificado));
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Pronto", "Linha Adicionada Com Sucesso"));
+	}
+
+	public Texto getTextoModificado() {
+		return textoModificado;
+	}
+
+	public void setTextoModificado(Texto textoModificado) {
+		this.textoModificado = textoModificado;
+	}
+=======
+		setTextoSelecionado(Usuario.getInstance().recombinaTexto(textoSelecionado));
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Pronto", "Linha Adicionada Com Sucesso"));
+	}
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title">Recombinador de Texto</ui:insert></title>
+
+</h:head>
+
+<h:body>
+
+	<h:form>
+		<p:growl id="mensagemDeErro" showDetail="true" sticky="true" />
+
+		<p:panel header="Recombine">
+			<p:commandButton action="#{textosETipos.adicionarNovaLinha()}" value="Adicionar Nova Linha"  ajax="false" update="mensagemDeErro" />
+			<p:button outcome="faces/inicial.xhtml" value="Voltar A Tela Inicial" />
+			<p:separator />
+			<h:outputText value="#{textosETipos.textoSelecionado.getConteudo()}" />
+			<p:separator />
+			<h:outputText value="#{textosETipos.textoModificado.getConteudo()}" />
+		</p:panel>
+
+
+	</h:form>
+
+
+</h:body>
+</html>

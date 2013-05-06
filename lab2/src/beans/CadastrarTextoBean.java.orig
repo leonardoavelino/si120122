@@ -1,0 +1,71 @@
+package beans;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+<<<<<<< HEAD
+import excessoes.TextoException;
+
+
+=======
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+import sistema.Texto;
+import sistema.Usuario;
+
+@ManagedBean
+@SessionScoped
+public class CadastrarTextoBean {
+	
+	private Texto texto;
+	private String conteudo;
+	
+	public String getConteudo() {
+		return conteudo;
+	}
+
+	public void setConteudo(String conteudo) {
+		this.conteudo = conteudo;
+	}
+
+	public String getTexto() {
+		return texto.getConteudo();
+	}
+
+	public void setTexto(Texto texto) {
+		this.texto = texto;
+	}
+	
+	public String criaTexto() {
+<<<<<<< HEAD
+		try {
+			this.texto = new Texto(conteudo);
+			if (Usuario.getInstance().getTextos().contains(texto)) {
+				FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage(null, new FacesMessage("Falhou", "Texto Já Existe"));
+			} else {
+			cadastrarTexto();			
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Sucesso", "Texto Salvo"));
+			}
+		}
+		catch (TextoException e){
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Falhou", e.getLocalizedMessage()));			
+		}
+		
+=======
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Sucesso", "Texto Salvo"));
+		this.texto = new Texto(conteudo);
+		cadastrarTexto();
+>>>>>>> ea673ce2a6a83733bb3cc59f0c69812942c44eb0
+		return "faces/inicial.xhtml";
+	}
+	
+	private void cadastrarTexto() {		 	
+		Usuario.getInstance().adicionaNovoTexto(texto);
+		
+	}
+}
